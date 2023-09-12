@@ -1,5 +1,6 @@
 package com.project.springboot2.mongodb.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,11 @@ public class PostService {
 		
 	public List<Post> findByTitle(String title) {
 		return repository.searchTitle(title);
+	}
+	
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+		maxDate = new Date(maxDate.getTime() + 24 * 3600 * 1000);
+		return repository.fullSearch(text, minDate, maxDate);
 	}
 	
 }
